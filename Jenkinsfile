@@ -8,7 +8,8 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'sudo pip install --no-cache-dir -U pytest'
+
+        sh 'pip install --no-cache-dir -U pytest'
 
         sh 'mkdir report'
 
