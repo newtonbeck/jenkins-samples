@@ -1,5 +1,6 @@
 pipeline {
-  agent { docker { image 'python' } }
+
+  agent { docker { image 'newtonbeck/pytest' } }
 
   environment {
     MY_ENV = 'xenkins'
@@ -8,9 +9,6 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-
-        sh 'pip install --no-cache-dir -U pytest'
-
         sh 'mkdir report'
 
         sh 'pytest --junitxml=report/junit.xml'
@@ -33,6 +31,7 @@ pipeline {
       }
     }
   }
+
   post {
     always {
       echo 'This will always run'
