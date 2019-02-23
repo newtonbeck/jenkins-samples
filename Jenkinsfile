@@ -9,6 +9,8 @@ pipeline {
   stages {
     stage('Test') {
       steps {
+        sh 'rm -rf report'
+
         sh 'mkdir report'
 
         sh 'pytest --junitxml=report/junit.xml'
