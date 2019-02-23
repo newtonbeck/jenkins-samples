@@ -6,7 +6,19 @@ pipeline {
   }
 
   stages {
-    stage('Build') {
+    stage('Test') {
+      steps {
+        sh 'pip install -U pytest'
+
+        sh 'mkdir report'
+
+        sh 'pytest --junitxml=report/junit.xml'
+
+        junit 'report/junit.xml'
+      }
+    }
+
+    stage('Deploy') {
       steps {
         sh 'python env_var.py'
 
