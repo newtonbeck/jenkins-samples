@@ -14,8 +14,6 @@ pipeline {
         sh 'mkdir report'
 
         sh 'pytest --junitxml=report/junit.xml'
-
-        junit 'report/junit.xml'
       }
     }
 
@@ -36,7 +34,7 @@ pipeline {
 
   post {
     always {
-      echo 'This will always run'
+      junit 'report/junit.xml'
     }
     success {
       echo 'This will run only when things go right'
