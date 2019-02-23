@@ -1,8 +1,15 @@
 pipeline {
   agent { docker { image 'python' } }
+
+  environment {
+    MY_ENV = 'xenkins'
+  }
+
   stages {
     stage('Build') {
       steps {
+        sh 'python env_var.py'
+
         retry(3) {
           sh 'python flaky.py'
         }
